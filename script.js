@@ -1,5 +1,10 @@
 const EMBED_MESSAGE_TYPE = "mkchess-faq-height";
+const EMBED_SYNC_DELAYS = [0, 180, 620, 1200, 2400, 4000];
+const EMBED_KEEPALIVE_INTERVAL_MS = 1000;
+const EMBED_KEEPALIVE_RUNS = 12;
 const accordion = document.querySelector("[data-accordion]");
+const isEmbedded = window.parent !== window;
+let embedKeepaliveId = null;
 
 const getPageHeight = () =>
   Math.ceil(
@@ -14,7 +19,7 @@ const getPageHeight = () =>
   );
 
 const postHeightToParent = () => {
-  if (window.parent === window) {
+  if (!isEmbedded) {
     return;
   }
 
@@ -29,10 +34,28 @@ const postHeightToParent = () => {
 
 const syncEmbedHeight = () => {
   window.requestAnimationFrame(() => {
-    postHeightToParent();
-    window.setTimeout(postHeightToParent, 180);
-    window.setTimeout(postHeightToParent, 620);
+    EMBED_SYNC_DELAYS.forEach((delay) => {
+      window.setTimeout(postHeightToParent, delay);
+    });
   });
+};
+
+const startEmbedKeepalive = () => {
+  if (!isEmbedded || embedKeepaliveId !== null) {
+    return;
+  }
+
+  let runs = 0;
+
+  embedKeepaliveId = window.setInterval(() => {
+    postHeightToParent();
+    runs += 1;
+
+    if (runs >= EMBED_KEEPALIVE_RUNS) {
+      window.clearInterval(embedKeepaliveId);
+      embedKeepaliveId = null;
+    }
+  }, EMBED_KEEPALIVE_INTERVAL_MS);
 };
 
 if ("ResizeObserver" in window) {
@@ -40,10 +63,16 @@ if ("ResizeObserver" in window) {
     syncEmbedHeight();
   });
 
+  resizeObserver.observe(document.documentElement);
   resizeObserver.observe(document.body);
 }
 
+window.addEventListener("DOMContentLoaded", () => {
+  syncEmbedHeight();
+  startEmbedKeepalive();
+});
 window.addEventListener("load", syncEmbedHeight);
+window.addEventListener("pageshow", syncEmbedHeight);
 window.addEventListener("resize", syncEmbedHeight);
 
 if (document.fonts?.ready) {
