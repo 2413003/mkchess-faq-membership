@@ -46,7 +46,7 @@ When you update `index.html`, `styles.css`, or `script.js` in the repository, Gi
   title="MK Chess Membership FAQ"
   scrolling="no"
   loading="lazy"
-  style="width:100%; height:640px; border:0; display:block; overflow:hidden; background:#ffffff;"
+  style="width:100%; height:800px; border:0; display:block; overflow:hidden; background:#ffffff;"
 ></iframe>
 
 <script>
@@ -71,4 +71,4 @@ When you update `index.html`, `styles.css`, or `script.js` in the repository, Gi
 
 4. Publish your Carrd site.
 
-If Carrd still shows a tiny jump on first load, raise the starting `height:640px` value a bit. After load, the script will resize it to the exact content height.
+If Carrd still shows a tiny jump on first load, raise the starting `height:800px` value a bit. After load, the script will resize it to the exact content height.
