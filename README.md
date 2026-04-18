@@ -1,12 +1,14 @@
 # Membership FAQ
 
-This is a lightweight, static FAQ section built in plain HTML, CSS, and JavaScript so it can be hosted directly on GitHub Pages and embedded into Carrd.
+This is a lightweight, static FAQ section built in plain HTML, CSS, and JavaScript. It is set up to work directly on GitHub Pages and can also be embedded into Carrd with an iframe.
 
 Live site:
 
 ```text
-Add your new GitHub Pages URL here once the repository is published
+https://2413003.github.io/mkchess-faq-membership/
 ```
+
+The page uses relative asset paths, so `index.html`, `styles.css`, and `script.js` all load correctly from the repository root on GitHub Pages.
 
 ## Files
 
@@ -17,30 +19,31 @@ Add your new GitHub Pages URL here once the repository is published
 
 ## Deploy To GitHub Pages
 
-1. Create a new GitHub repository for this folder's contents.
-2. Upload the files in this folder to the root of that repository.
-3. In GitHub, open `Settings` -> `Pages`.
-4. Under `Build and deployment`, choose `Deploy from a branch`.
-5. Select your main branch and the `/ (root)` folder, then save.
-6. Wait for GitHub Pages to publish your site.
+1. Push the files in this folder to the root of your GitHub repository.
+2. In GitHub, open `Settings` -> `Pages`.
+3. Under `Build and deployment`, choose `Deploy from a branch`.
+4. Select your main branch and the `/ (root)` folder, then save.
+5. Wait for GitHub Pages to publish your site.
 
-Your published URL will usually look like:
+This version is already published at:
 
 ```text
-https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/
+https://2413003.github.io/mkchess-faq-membership/
 ```
+
+When you update `index.html`, `styles.css`, or `script.js` in the repository, GitHub Pages will redeploy the site automatically.
 
 ## Embed In Carrd
 
 1. In Carrd, add an `Embed` element where you want the FAQ to appear.
 2. Choose `Type: Code`.
-3. Replace the placeholder URL below with your new GitHub Pages URL, then paste the full snippet:
+3. Paste this snippet:
 
 ```html
 <iframe
   id="mkchess-faq-frame"
-  src="https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/"
-  title="FAQs"
+  src="https://2413003.github.io/mkchess-faq-membership/"
+  title="MK Chess Membership FAQ"
   scrolling="no"
   loading="lazy"
   style="width:100%; height:640px; border:0; display:block; overflow:hidden; background:#ffffff;"
@@ -49,7 +52,7 @@ https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/
 <script>
   (function () {
     const iframe = document.getElementById("mkchess-faq-frame");
-    const allowedOrigin = "https://YOUR-USERNAME.github.io";
+    const allowedOrigin = "https://2413003.github.io";
 
     function setFrameHeight(height) {
       if (!height || !iframe) return;
@@ -69,5 +72,3 @@ https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/
 4. Publish your Carrd site.
 
 If Carrd still shows a tiny jump on first load, raise the starting `height:640px` value a bit. After load, the script will resize it to the exact content height.
-
-When you send me the final GitHub Pages link for this version, I can update this README with the exact live URL and Carrd snippet.
