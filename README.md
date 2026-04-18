@@ -46,7 +46,7 @@ When you update `index.html`, `styles.css`, or `script.js` in the repository, Gi
   title="MK Chess Membership FAQ"
   scrolling="no"
   loading="lazy"
-  style="width:100%; height:800px; border:0; display:block; overflow:hidden; background:#ffffff;"
+  style="width:100%; height:1000px; border:0; display:block; overflow:hidden; background:#ffffff;"
 ></iframe>
 
 <script>
